@@ -61,6 +61,7 @@ public class Hotel {
     private BigDecimal priceRangeMax;
     
     @Column(nullable = false)
+    @Builder.Default
     private String currency = "XOF"; // Franc CFA par défaut
     
     @ElementCollection
@@ -107,18 +108,23 @@ public class Hotel {
     
     private Double averageRating;
     
-    private Integer totalReviews;
+    @Builder.Default
+    private Integer totalReviews = 0;
     
+    @Builder.Default
     private Integer viewCount = 0;
     
+    @Builder.Default
     private Integer bookingCount = 0;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     private User owner; // Gestionnaire/propriétaire de l'hôtel
     
+    @Builder.Default
     private boolean featured = false; // Mise en avant sur la plateforme
     
+    @Builder.Default
     private boolean active = true;
     
     @Column(nullable = false)
